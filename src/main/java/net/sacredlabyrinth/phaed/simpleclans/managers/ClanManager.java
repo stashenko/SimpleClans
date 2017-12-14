@@ -9,9 +9,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.*;
+import net.sacredlabyrinth.phaed.simpleclans.events.ChatEvent;
+import org.bukkit.Bukkit;
 
 /**
  * @author phaed
@@ -804,7 +805,6 @@ public final class ClanManager {
      * Sort clans by KDR
      *
      * @param clans
-     * @return
      */
     public void sortClansBySize(List<Clan> clans) {
         Collections.sort(clans, new Comparator<Clan>() {
@@ -842,7 +842,6 @@ public final class ClanManager {
      * Sort clan players by last seen days
      *
      * @param cps
-     * @return
      */
     public void sortClanPlayersByLastSeen(List<ClanPlayer> cps) {
         Collections.sort(cps, new Comparator<ClanPlayer>() {
@@ -1090,31 +1089,29 @@ public final class ClanManager {
                 ChatBlock.sendMessage(player, ChatColor.AQUA + "You have unmuted clan chat");
             }
         } else {
-            String code = "" + ChatColor.RED + ChatColor.WHITE + ChatColor.RED + ChatColor.BLACK;
-            String tag;
-
-            if (cp.getRank() != null && !cp.getRank().isEmpty()) {
-                tag = plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketLeft() + plugin.getSettingsManager().getClanChatRankColor() + cp.getRank() + plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketRight() + " ";
-            } else {
-                tag = plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketLeft() + plugin.getSettingsManager().getTagDefaultColor() + cp.getClan().getColorTag() + plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketRight() + " ";
-            }
-
-            String message = code + Helper.parseColors(tag) + plugin.getSettingsManager().getClanChatNameColor() + plugin.getSettingsManager().getClanChatPlayerBracketLeft() + player.getName() + plugin.getSettingsManager().getClanChatPlayerBracketRight() + " " + plugin.getSettingsManager().getClanChatMessageColor() + msg;
-            String eyeMessage = code + plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketLeft() + plugin.getSettingsManager().getTagDefaultColor() + cp.getClan().getColorTag() + plugin.getSettingsManager().getClanChatBracketColor() + plugin.getSettingsManager().getClanChatTagBracketRight() + " " + plugin.getSettingsManager().getClanChatNameColor() + plugin.getSettingsManager().getClanChatPlayerBracketLeft() + player.getName() + plugin.getSettingsManager().getClanChatPlayerBracketRight() + " " + plugin.getSettingsManager().getClanChatMessageColor() + msg;
-
-            plugin.getServer().getConsoleSender().sendMessage(eyeMessage);
-
-            List<ClanPlayer> cps = cp.getClan().getMembers();
-
-            for (ClanPlayer cpp : cps) {
-                Player member = cpp.toPlayer();
-                if (cpp.isMuted()) {
-                    continue;
+            List<ClanPlayer> receivers = new LinkedList<>();
+            for (ClanPlayer p : cp.getClan().getOnlineMembers()) {
+                if (!p.isMuted()) {
+                    receivers.add(p);
                 }
-                ChatBlock.sendMessage(member, message);
             }
-
-            sendToAllSeeing(eyeMessage, cps);
+            
+            ChatEvent ce = new ChatEvent(msg, cp, receivers, ChatEvent.Type.CLAN);
+            Bukkit.getServer().getPluginManager().callEvent(ce);
+            
+            if (ce.isCancelled()) {
+                return;
+            }
+            
+            String message = Helper.formatClanChat(cp, ce.getMessage(), ce.getPlaceholders());
+            String eyeMessage = Helper.formatSpyClanChat(cp, message);
+            plugin.getServer().getConsoleSender().sendMessage(eyeMessage);
+            
+            for (ClanPlayer p : ce.getReceivers()) {
+                ChatBlock.sendMessage(p.toPlayer(), message);
+            }
+            
+            sendToAllSeeing(eyeMessage, ce.getReceivers());
         }
     }
 
@@ -1138,7 +1135,7 @@ public final class ClanManager {
                 }
 
                 if (!alreadySent) {
-                    ChatBlock.sendMessage(player, ChatColor.DARK_GRAY + Helper.stripColors(msg));
+                    ChatBlock.sendMessage(player, msg);
                 }
             }
         }
@@ -1190,21 +1187,13 @@ public final class ClanManager {
                 ChatBlock.sendMessage(player, ChatColor.AQUA + "You have unmuted ally chat");
             }
         } else {
-            String code = "" + ChatColor.AQUA + ChatColor.WHITE + ChatColor.AQUA + ChatColor.BLACK;
-            String message = code + plugin.getSettingsManager().getAllyChatBracketColor() + plugin.getSettingsManager().getAllyChatTagBracketLeft() + plugin.getSettingsManager().getAllyChatTagColor() + plugin.getSettingsManager().getCommandAlly() + plugin.getSettingsManager().getAllyChatBracketColor() + plugin.getSettingsManager().getAllyChatTagBracketRight() + " " + plugin.getSettingsManager().getAllyChatNameColor() + plugin.getSettingsManager().getAllyChatPlayerBracketLeft() + player.getName() + plugin.getSettingsManager().getAllyChatPlayerBracketRight() + " " + plugin.getSettingsManager().getAllyChatMessageColor() + msg;
-            SimpleClans.log(message);
-
-            Player self = cp.toPlayer();
-            ChatBlock.sendMessage(self, message);
-
+            List<ClanPlayer> receivers = new LinkedList<>();
             Set<ClanPlayer> allies = cp.getClan().getAllAllyMembers();
             allies.addAll(cp.getClan().getMembers());
-
             for (ClanPlayer ally : allies) {
                 if (ally.isMutedAlly()) {
                     continue;
                 }
-                Player member = ally.toPlayer();
                 if (SimpleClans.getInstance().hasUUID()) {
                     if (player.getUniqueId().equals(ally.getUniqueId())) {
                         continue;
@@ -1214,7 +1203,24 @@ public final class ClanManager {
                         continue;
                     }
                 }
-                ChatBlock.sendMessage(member, message);
+                receivers.add(ally);
+            }
+            
+            ChatEvent ce = new ChatEvent(msg, cp, receivers, ChatEvent.Type.ALLY);
+            Bukkit.getServer().getPluginManager().callEvent(ce);
+            
+            if (ce.isCancelled()) {
+                return;
+            }
+            
+            String message = Helper.formatAllyChat(cp, ce.getMessage(), ce.getPlaceholders());
+            SimpleClans.log(message);
+
+            Player self = cp.toPlayer();
+            ChatBlock.sendMessage(self, message);
+
+            for (ClanPlayer p : ce.getReceivers()) {
+                ChatBlock.sendMessage(p.toPlayer(), message);
             }
         }
     }
