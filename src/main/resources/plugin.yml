@@ -115,6 +115,8 @@ permissions:
     description: Can start wars
   simpleclans.leader.setrank:
     description: Can set ranks
+  simpleclans.leader.coloredtag:
+    description: Can use color codes in tags
   simpleclans.member.bank:
     description: Can use banks
   simpleclans.admin.*:
@@ -191,3 +193,4 @@ permissions:
       simpleclans.leader.home-set: true
       simpleclans.leader.home-regroup: true
       simpleclans.leader.setrank: true
+      simpleclans.leader.coloredtag: true
