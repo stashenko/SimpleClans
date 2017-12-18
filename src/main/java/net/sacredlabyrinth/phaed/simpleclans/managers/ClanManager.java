@@ -90,6 +90,18 @@ public final class ClanManager {
         SimpleClans.getInstance().getPermissionsManager().updateClanPermissions(clan);
         SimpleClans.getInstance().getServer().getPluginManager().callEvent(new CreateClanEvent(clan));
     }
+    
+    /**
+     * Reset a player's kdr
+     * @param cp 
+     */
+    public void resetKdr(ClanPlayer cp) {
+        cp.setCivilianKills(0);
+        cp.setNeutralKills(0);
+        cp.setRivalKills(0);
+        cp.setDeaths(0);
+        plugin.getStorageManager().updateClanPlayerAsync(cp);
+    }
 
     /**
      * Delete a players data file
@@ -947,6 +959,32 @@ public final class ClanManager {
 
         double price = plugin.getSettingsManager().getHomeTeleportPriceSet();
 
+        if (plugin.getPermissionsManager().hasEconomy()) {
+            if (plugin.getPermissionsManager().playerHasMoney(player, price)) {
+                plugin.getPermissionsManager().playerChargeMoney(player, price);
+                player.sendMessage(ChatColor.RED + MessageFormat.format(plugin.getLang("account.has.been.debited"), price));
+            } else {
+                player.sendMessage(ChatColor.RED + plugin.getLang("not.sufficient.money"));
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    /**
+     * Purchase Reset Kdr
+     * 
+     * @param player
+     * @return
+     */
+    public boolean purchaseResetKdr(Player player) {
+        if (!plugin.getSettingsManager().isePurchaseResetKdr()) {
+            return true;
+        }
+        
+        double price = plugin.getSettingsManager().geteResetKdr();
+        
         if (plugin.getPermissionsManager().hasEconomy()) {
             if (plugin.getPermissionsManager().playerHasMoney(player, price)) {
                 plugin.getPermissionsManager().playerChargeMoney(player, price);
