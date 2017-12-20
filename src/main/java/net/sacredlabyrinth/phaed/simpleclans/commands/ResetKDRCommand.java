@@ -48,7 +48,7 @@ public class ResetKDRCommand {
                 for (ClanPlayer cp : SimpleClans.getInstance().getClanManager().getAllClanPlayers()) {
                     plugin.getClanManager().resetKdr(cp);
                 }
-                ChatBlock.sendMessage(player, ChatColor.RED + plugin.getLang("kdr.of.all.players.was.reset"));
+                ChatBlock.sendMessage(player, ChatColor.RED + plugin.getLang("you.have.reseted.kdr.of.all.players"));
             } else {
                 Player toReset = Helper.getPlayer(arg[0]);
                 if (toReset == null) {

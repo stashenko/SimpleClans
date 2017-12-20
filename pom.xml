@@ -19,6 +19,8 @@
                     <include>plugin.yml</include>
                     <include>config.yml</include>
                     <include>language.yml</include>
+                    <include>language-br.yml</include>
+                    <include>language-zh.yml</include>
                 </includes>
             </resource>
         </resources>
