@@ -1,0 +1,417 @@
+create.command: create
+list.command: list
+profile.command: profile
+roster.command: roster
+lookup.command: lookup
+leaderboard.command: leaderboard
+alliances.command: alliances
+rivalries.command: rivalries
+vitals.command: vitals
+coords.command: coords
+stats.command: stats
+ally.command: ally
+rival.command: rival
+bb.command: bb
+cape.command: cape
+modtag.command: modtag
+toggle.command: toggle
+invite.command: invite
+kick.command: kick
+bank.command: bank
+trust.command: trust
+untrust.command: untrust
+promote.command: promote
+demote.command: demote
+clanff.command: clanff
+ff.command: ff
+resign.command: resign
+disband.command: disband
+verify.command: verify
+ban.command: ban
+unban.command: unban
+reload.command: reload
+globalff.command: globalff
+kills.command: kills
+mostkilled.command: mostkilled
+war.command: war
+home.command: home
+setrank.command: setrank
+place.command: place
+resetkdr.command: resetkdr
+usage.resetkdr: 'Используйте: /{0} resetkdr [all/player]'
+usage.clan.alliances: 'Используйте: /{0} alliances'
+usage.ally: 'Используйте: /{0} ally add/remove [tag]'
+usage.ban.unban: 'Используйте: /{0} ban/unban [player]'
+usage.rival: 'Используйте: /{0} rival add/remove [tag]'
+usage.war: 'Используйте: /{0} war start/end [tag]'
+usage.cape.url: 'Используйте: /{0} cape [url]'
+usage.setrank: 'Используйте: /{0} setrank [player] [rank], ранг может быть в нескольких мирах и содержать &f цветовые коды'
+usage.clanff: 'Используйте: /{0} clanff allow/block'
+usage.0.coords: 'Используйте: /{0} coords'
+usage.create.tag: 'Используйте: /{0} create [tag] [name]'
+usage.demote.leader: 'Используйте: /{0} demote [leader]'
+usage.0.disband: 'Используйте: /{0} disband'
+usage.0.ff.allow.auto: 'Используйте: /{0} ff allow/auto'
+usage.0.globalff.allow.auto: 'Используйте: /{0} globalff allow/auto'
+usage.0.permissions.player: 'Используйте: /{0} permissions [clan] add/remove [permission]'
+usage.0.invite.player: 'Используйте: /{0} invite [player]'
+usage.kick.player: 'Используйте: /{0} kick [player]'
+usage.bank: 'Используйте: /{0} bank withdraw/deposit/status [amount]'
+usage.0.modtag.tag: 'Используйте: /{0} modtag [tag]'
+usage.list: 'Используйте: /{0} list'
+usage.lookup.tag: 'Используйте: /{0} lookup [tag]'
+usage.0.profile.tag: 'Используйте: /{0} profile [tag]'
+usage.0.promote.member: 'Используйте: /{0} promote <member>'
+usage.0.rivalries: 'Используйте: /{0} rivalries'
+usage.0.roster.tag: 'Используйте: /{0} roster [tag]'
+usage.0.stats: 'Используйте: /{0} stats'
+usage.0.trust.player: 'Используйте: /{0} trust [player]'
+usage.0.untrust.player: 'Используйте: /{0} untrust [player]'
+usage.0.verify.tag: 'Используйте: /{0} verify [tag]'
+usage.0.vitals: 'Используйте: /{0} vitals'
+usage.0.place: 'Используйте: /{0} place [player] [tag]'
+usage.0.leaderboard: 'Используйте: /{0} leaderboard'
+0.reload.1.reload.configuration: /{0} reload{1} - перезагрузка'
+0.globalff.allow.auto.1.set.global.friendly.fire: /{0} globalff allow/auto {1} - Общее разрешение огня по своим
+0.place: /{0} place [player] [tag]{1} - Место игрока в клане
+0.ban.unban.player.1.ban.unban.a.player: /{0} ban/unban [player]{1} - Забанить/Разбанить игрока
+0.hometp.clan.1.tp.home.a.clan: /{0} home tp [clan]{1} - Телепорт в клановый дом
+0.disband.tag.1.disband.a.clan: /{0} disband [tag]{1} - Расформировать клан
+0.resetkdr.1.resets.kdr: /{0} resetkdr player/all{1} - Сброс KDR всех игроков или только одного
+0.resetkdr.1.resets.your.kdr: /{0} resetkdr{1} - Сброс своего KDR
+0.verify.tag.1.verify.an.unverified.clan: /{0} verify [tag]{1} - Подтверждение клана сделать/убрать
+0.verify.1.purchase.verification.of.your.clan: /{0} verify{1} - Проверка покупки вашего клана
+0.list.1.lists.all.clans: /{0} list{1} - Список всех кланов
+0.profile.1.view.your.clan.s.profile: /{0} profile{1} - Профиль вашего клана
+0.profile.tag.1.view.a.clan.s.profile: /{0} profile [tag]{1} - Профиль клана (тег)
+0.lookup.1.lookup.your.info: /{0} lookup{1} - Поиск информации
+0.lookup.player.1.lookup.a.player.s.info: /{0} lookup [player]{1} - Информация об игроке
+0.leaderboard.1.view.leaderboard: /{0} leaderboard{1} - Таблица лидеров
+0.alliances.1.view.all.clan.alliances: /{0} alliances{1} - Все клановые альянсы
+0.rivalries.1.view.all.clan.rivalries: /{0} rivalries{1} - Посмотреть всех противников
+0.roster.1.view.your.clan.s.member.list: /{0} roster{1} - Игроки вашего клана
+0.roster.tag.1.view.a.clan.s.member.list: /{0} roster [tag]{1} - Участники клана
+0.vitals.1.view.your.clan.member.s.vitals: /{0} vitals{1} - Жизненные показатели участника клана
+0.coords.1.view.your.clan.member.s.coordinates: /{0} coords{1} - Просмотр координат участника клана
+0.stats.1.view.your.clan.member.s.stats: /{0} stats{1} - Статистика участника клана
+0.ally.add.remove.tag.1.add.remove.an.ally.clan: /{0} ally add/remove [tag]{1} - Добавить/удалить клан союзника
+0.rival.add.remove.tag.1.add.remove.a.rival.clan: /{0} rival add/remove [tag]{1} - Добавить/удалить клан противника
+0.bb.1.display.bulletin.board: /{0} bb{1} - Показать доску объявлений
+0.bb.msg.1.add.a.message.to.the.bulletin.board: /{0} bb [msg]{1} - Сообщение на доску объявлений
+0.modtag.tag.1.modify.the.clan.s.tag: /{0} modtag [tag]{1} - Изменить тег клана
+0.cape.url.1.change.your.clan.s.cape: /{0} cape [url]{1} - Изменить плащ клана
+0.invite.player.1.invite.a.player: /{0} invite [player]{1} - Пригласить игрока в клан
+0.kick.player.1.kick.a.player.from.the.clan: /{0} kick [player]{1} - Кикнуть игрока из клана
+0.trust.untrust.player.1.set.trust.level1: /{0} trust [player]{1} - статус доверенный
+0.trust.untrust.player.1.set.trust.level2: /{0} untrust [player]{1} - статус не доверенный
+0.promote.member.1.promote.a.member.to.leader: /{0} promote [member]{1} - Повысить игрока до лидера
+0.demote.leader.1.demote.a.leader.to.member: /{0} demote [leader]{1} - Понизить лидера
+0.clanff.allow.block.1.toggle.clan.s.friendly.fire: /{0} clanff allow/block{1} - Огонь по своим
+0.ff.allow.auto.1.toggle.personal.friendly.fire: /{0} ff allow/auto{1} - Личный огонь по своим
+0.toggle.command: /{0} toggle [{2}]{1} - Переключение личных параметров
+0.resign.1.resign.from.the.clan: /{0} resign{1} - Уйти из клана
+0.disband.1.disband.your.clan: /{0} disband{1} - Удалить свой клан
+0.trust.setrank: /{0} setrank [player] [rank]{1} - Дать игроку ранг
+0.create.tag.name.1.purchase.a.new.clan: /{0} create [tag] [name]{1} - Покупка нового клана
+0.create.tag.name.1.create.a.new.clan: /{0} create [tag] [name]{1} - Создать новый клан
+0.kills: /{0} kills{1} - Просмотр количества убийств
+0.killsplayer: /{0} kills [player]{1} - Просмотр количества убийств игрока
+0.mostkilled: /{0} mostkilled{1} - Просмотр игроков, которых больше всех убивали
+home-menu: /{0} home{1} - Телепорт на базу клана
+home-set-menu: /{0} home set{1} - Установить точку дома клана
+home-clear-menu: /{0} home clear{1} - Очистить точку дома клана
+home-regroup-menu: /{0} home regroup [me]{1} - Перегруппироваться всем игрокам клана на дому или к вам
+example.clan.modtag.4kfo.4l: 'Пример: /clan modtag &4K&fo&4L'
+example.clan.create: 'Пример: /clan create &4Kol Knights of the Labyrinth'
+clan: Клан
+allies: Альянс
+alliances: Альянсы
+coords: Координаты
+name: Название
+distance: Дистанция
+coords.upper: Координаты
+world: Мир
+kdr: KDR
+members: Участники
+clans.lower: Кланы
+rival: Соперник
+civilian: Гражданский
+neutral: Нейтральный
+free.agent: Свободный агент
+days: дней
+rivals: Соперник
+rivalries: вражда
+online: Онлайн
+player: Игрок
+seen: Показать
+leader: лидер
+roster: список
+trusted: доверенный
+untrusted: не доверенный
+deaths: Смерти
+weights: Статус
+stats: статы
+health: Жизни
+armor: Броня
+weapons: Оружие
+food: Еда
+vitals: жизненность
+verified: подтвержденный
+unverified: не подтвержденный
+profile: профиль
+civilian.abbreviation: Civ
+rank: Ранг
+leaders: Лидеры
+none: Никто
+today: Сегодня
+kills: Убийства
+mostkilled: Большинство Убитых
+killcount: Количество Убийств
+attacker: Атакующий
+victim: Жертва
+kill.death.ratio: Коэффициент Убийства / Смерти
+nokillsfound: Убийств Не Найдено
+version.loaded: '[{0}] Версия {1} загружена'
+promoted.to.leader: '{0} теперь лидер'
+denied.demotion: '{0} отказал {1}. Не удалось.'
+membership.invitation: '{0} отклонил предложение'
+joined.the.clan: '{0} вступил в клан'
+signed.off.request.cancelled: '{0} не ответил {1} запрос отменен.'
+clan.deletion: '{0} Отказано в удалении клана. Не удалось достичь консенсуса.'
+has.been.disbanded: Clan {0} был расформирован
+denied.the.promotion: '{0} отказано в продвижении {1}. Не удалось достичь консенсуса.'
+demoted.back.to.member: '{0} был понижен '
+peace.agreement.denied: Мирное соглашение с {0} отклонено
+denied.to.make.peace: '{0} отказалась заключить мир с {1}'
+broken.the.rivalry: '{0} прекратил соперничество с {1}'
+broken.the.rivalry.with: '{0} разорвал соперничество с {1}'
+the.alliance.was.denied: Альянс с {0} отклонен
+denied.an.alliance: '{0} отрицает союз с {1}'
+accepted.an.alliance: '{0} заключили союз с {1}'
+created.an.alliance: '{0} создал союз с {1}'
+has.joined: '{0} присоединился {1}'
+proposing.to.end.the.rivalry: '{0} предлагает разорвать сотрудничество с {1}'
+proposing.an.alliance: '{0} предлагает союз с {1}'
+inviting.you.to.join: '{0} приглашает Вас присоединиться {1}'
+asking.for.the.deletion: '{0} просит об удалении клана'
+asking.for.the.promotion: '{0} просит продвижения у {1}'
+asking.for.the.demotion: '{0} просит о понижении у {1}'
+accept.or.deny: '{0} или {1}'
+not.sufficient.money: У Вас недостаточно средств на счете
+account.has.been.debited: Ваш счет был дебетован {0}
+mysql.connection.successful: Соединение с MySQL успешно
+mysql.connection.failed: Ошибка подключения к MySQL
+sqlite.connection.successful: Подключение SQLite успешно
+sqlite.connection.failed: ' К данным SQLite подключение не удалось'
+purging.player.data: 'Очистка данных игрока: {0}'
+purging.clan: 'Очистка клана: {0}'
+clan.players: 'Игроки клана: {0}'
+clans: 'Кланы: {0}'
+banned: Вам запрещено использовать команды клана
+nothing.more.to.see: Больше нечего посмотреть
+nothing.to.deny: Нечего отрицать
+no.leader.permissions: У вас нет прав лидера
+you.have.already.voted: Вы уже проголосовали
+has.voted.to.deny: '{0} проголосовал за отрицание'
+nothing.to.accept: Нечего принимать
+view.next.page: Нажать /{0} для просмотра следующей страницы.
+voted.to.accept: '{0} проголосовали за принятие'
+bulletin.board.header: '{0}* {1}{2} доска объявлений'
+has.been.disbanded.rivalry.ended: '{0} был расформирован. Соперничество закончилось.'
+has.been.disbanded.alliance.ended: '{0} был расформирован. Альянс закончился.'
+clan.disbanded: Клан удален
+1.color.day: 1 {0}день
+many.color.days: '{0}{1} дней'
+does.not.match: Не соответствует команде клана
+simpleclans.command.failure: 'Сбой команды SimpleClans: {0}'
+insufficient.permissions: Недостаточные разрешения
+clan.is.not.verified: Клан не подтвержден
+not.a.member.of.any.clan: Вы не являетесь участником какого-либо клана
+minimum.to.make.alliance: Ваш клан должен иметь по крайней мере {0} игроков для того, чтобы заключать союзы
+no.clan.matched: Ни один клан не соответствует
+cannot.ally.with.an.unverified.clan: Нельзя объединиться с неподтвержденного клана
+your.clans.are.not.allies: Ваши кланы не являются союзниками
+has.broken.the.alliance: '{0} разорвал альянс с {1}'
+at.least.one.leader.accept.the.alliance: По крайней мере, один лидер союзников должен быть ОНЛАЙН, чтобы принять Альянс
+leaders.have.been.asked.for.an.alliance: '{0} лидеров попросили заключить Союз'
+your.clans.are.already.allies: Ваши кланы уже являются союзниками
+your.clan.cannot.create.rivals: Ваш клан не может добавлять соперников
+min.players.rivalries: Ваш клан должен иметь по крайней мере {0} игроков для того, чтобы сделать соперничество
+this.player.is.already.banned: Этот игрок уже забанен
+player.added.to.banned.list: Игрок добавлен в список запрещенных
+you.banned: Вам запретили командовать кланом
+cape.must.be.png: URL-адрес cape должен указывать на изображение png
+url.error: URL возвращает ошибку. Пожалуйста, убедитесь, что он работает.
+changed.the.clan.cape: '{0} Плащ клана изменен'
+clan.wide.friendly.fire.blocked: Общеклановый огонь по своим заблокирован
+clan.wide.friendly.fire.is.allowed: Общеклановый огонь по своим разрешен
+only.trusted.players.can.access.clan.coords: Только доверенные игроки могут получить доступ к Clan coords
+you.are.the.only.member.online: Вы единственный участник онлайн
+your.clan.tag.cannot.be.longer.than.characters: Тег вашего клана не может быть длиннее {0} знаков
+your.clan.tag.must.be.longer.than.characters: Тег вашего клана должен быть длиннее {0} знаков
+your.tag.cannot.contain.the.following.colors: 'Тег не может содержать следующие цвета: {0}'
+your.tag.cannot.contain.color.codes: Тег не может содержать цветовые коды
+your.clan.name.cannot.be.longer.than.characters: Название вашего клана не может быть длиннее {0} знаков
+your.clan.name.must.be.longer.than.characters: Название вашего клана должно быть длиннее {0} знаков
+your.clan.tag.can.only.contain.letters.numbers.and.color.codes: Тег вашего клана может содержать только буквы, цифры и цветовые коды
+your.clan.name.cannot.contain.color.codes: Название вашего клана не может содержать цветовые коды
+that.tag.name.is.disallowed: Это имя тега запрещено
+you.must.first.resign: Вы должны сначала уйти из {0}
+clan.with.this.tag.already.exists: Клан с этим тегом уже существует
+get.your.clan.verified.to.access.advanced.features: Пройдите верификацию клана, чтобы получить доступ к расширенным функциям
+clan.created: Клан {0} создан
+leaders.must.be.online.to.vote.on.demotion: Все лидеры должны быть ОНЛАЙН, чтобы проголосовать за это понижение в должности
+demotion.vote.has.been.requested.from.all.leaders: За понижение в должности проголосовали все лидеры
+player.is.not.a.leader.of.your.clan: Игрок не является лидером вашего клана
+clan.has.been.disbanded: Клан {0} удален
+clan.disband.vote.has.been.requested.from.all.leaders: За расформирование клана проголосовали все лидеры
+friendy.fire.is.now.managed.by.your.clan: Дружественный огонь теперь управляется вашим кланом
+personal.friendly.fire.is.set.to.allowed: Личный огонь по своим разрешен
+global.friendy.fire.is.now.managed.by.each.clan: Глобальный огонь по своим теперь управляется каждым кланом
+global.friendy.fire.is.already.being.managed.by.each.clan: Глобальный огонь по своим уже управляется каждым кланом
+global.friendly.fire.is.set.to.allowed: Глобальный огонь по своим установлен
+global.friendly.fire.is.already.being.allowed: Глобальный огонь по своим уже разрешен
+no.player.matched: Ни один игрок не соответствует
+the.player.doesn.t.not.have.the.permissions.to.join.clans: Игрок не имеет права вступать в кланы
+you.cannot.invite.yourself: Вы не можете пригласить себя
+this.player.is.banned.from.using.clan.commands: Этому игроку запрещено использовать команды клана
+the.player.is.already.member.of.another.clan: Игрок уже является участником другого клана
+has.been.asked.to.join: '{0} было предложено присоединиться {1}'
+you.cannot.kick.yourself: Нельзя кикнуть себя
+the.player.is.not.a.member.of.your.clan: Игрок не является участником вашего клана
+you.cannot.kick.another.leader: Вы не можете кикнуть другого лидера
+has.been.kicked.by: '{0} был кикнут {1}'
+no.clans.have.been.created: Кланы не были созданы
+total.clans: 'Всего кланов:'
+legend: 'Легенда:'
+kill.type.civilian: 'Тип Убийства: {0}Гражданское лицо'
+no.player.data.found: Игрок не найден
+kill.type.0: 'Тип Убийства: {0}'
+s.player.info: '{0}Информация об игроке'
+clan.0: 'Клан: {0}'
+status.0: 'Статус: {0}'
+rank.0: 'Ранг: {0}'
+kdr.0: 'KDR: {0}'
+deaths.0: 'Смерти: {0}'
+join.date.0: 'Дата входа: {0}'
+last.seen.0: 'Последний раз был: {0}'
+past.clans.0: 'Прошлые Кланы: {0}'
+inactive.0: 'Неактивный: {0}'
+kill.totals: 'Убийства:'
+clan.commands: команды клана
+you.can.only.modify.the.color.and.case.of.the.tag: Изменить можно только цвет и регистр тега
+tag.changed.to.0: Тег изменен на {0}
+name.0: 'Название: {0}'
+leaders.0: 'Лидеры: {0}'
+members.online.0: 'Участники Онлайн: {0}'
+allies.0: 'Союзы: {0}'
+rivals.0: 'Соперничает: {0}'
+founded.0: 'Создан: {0}'
+the.member.to.be.promoted.must.be.online: Для повышения участники должны быть онлайн
+the.player.does.not.have.the.permissions.to.lead.a.clan: Игрок не имеет права руководить кланом
+you.cannot.promote.yourself: Вы не можете продвигать себя
+all.leaders.must.be.online.to.vote.on.this.promotion: Все лидеры должны быть ОНЛАЙН, чтобы проголосовать
+the.player.is.already.a.leader: Игрок уже является лидером
+configuration.reloaded: Перезагружена
+last.leader.cannot.resign.you.must.appoint.another.leader.or.disband.the.clan: Последний лидер не может уйти в отставку.Вы должны назначить другого лидера или распустить клан
+0.has.resigned: '{0} ушел в отставку'
+only.trusted.players.can.access.clan.stats: Только надежные игроки могут получить доступ к статистике клана
+you.cannot.trust.yourself: Вы не можете сделать себя доверенным
+leaders.are.already.trusted: Лидеры уже доверенные
+this.player.is.already.trusted: Этому игроку уже доверяют
+has.been.given.trusted.status.by: '{0} был дан доверенный статус {1}'
+this.player.is.not.banned: Этот игрок не забанен
+player.removed.from.the.banned.list: Игрок удален из списка забаненых
+you.have.been.unbanned.from.clan.commands: Вы были отстранены от команд клана
+you.cannot.untrust.yourself: Вы не можете сделать себя не доверенным
+leaders.cannot.be.untrusted: Лидеры не могут быть не доверенными
+this.player.is.already.untrusted: Этот игрок уже не в доверенных
+has.been.given.untrusted.status.by: '{0} был дан недоверенный статус {1}'
+the.clan.does.not.exist: Клана не существует
+the.clan.is.already.verified: Клан уже подтвержден
+the.clan.has.been.verified: Клан уже был подтвержден
+clan.0.has.been.verified: Клан {0} подтвержден!
+only.trusted.players.can.access.clan.vitals: Только доверенные игроки могут получить доступ к жизненным показателям
+total.clan.players.0: 'Всего игроков клана: {0}'
+proposing.war: '{0} предлагает начать войну с {1}'
+you.can.only.start.war.with.rivals: Начать войну можно только с соперниками
+leaders.have.been.asked.to.accept.the.war.request: '{0} лидеров попросили принять военный запрос'
+leaders.asked.to.end.rivalry: '{0} лидеров попросили прекратить войну'
+proposing.to.end.the.war: '{0} предлагает прекратить войну с {1}'
+clans.already.at.war: Ваши кланы уже воюют
+clans.not.at.war: Ваши кланы не воюют
+you.are.at.war: '{0} сейчас воюет с {1}'
+denied.war.req: '{0} отклонен военный запрос, отправленный {1}'
+you.are.no.longer.at.war: '{0} больше не воюет с {1}'
+end.war.denied: Просьба о прекращении войны была отклонена {0}
+denied.war.end: '{0} отклонил {1} просьбу прекратить войну'
+0.war: /{0} war{1} start/end [tag] - Начало или окончание войны
+has.initiated.a.rivalry: '{0} начал соперничество с {1}'
+start: старт
+end: закончено
+add: добавить
+remove: удалить
+allow: разрешить
+block: блокировать
+auto: авто
+war: война
+0.s.sword.1.2.b.bow.3.4.a.arrow: '{0}S=Меч{1}, {2}B=Лук{3}, {4}#=Стрелы'
+weapon.S: S
+weapon.B: B
+weapon.A: A
+materials: Материалы
+armor.h: H
+armor.c: C
+armor.l: L
+armor.B: B
+diamond: алмазы
+gold: золото
+wood: дерево
+server.announce: Обьявления Сервера
+clan.announce: Обьявления Клана
+leader.announce: Обьявления Лидера
+hunger: Голод
+stone: Камень
+iron: Железо
+the.clan.cannot.be.rivaled: Клан не может соперничать
+capeoff: Плащ отключен
+capeon: Плащ включен
+bboff: BB выключен
+bbon: BB включен
+tagoff: Тег отключен
+tagon: Тег включен
+depositon: Депозит включен
+depositoff: Депозит выключен
+withdrawon: Снятие включено
+withdrawoff: Снятие выключено
+home.base.only.once: Клан-дом может быть установлен только раз
+now.at.homebase: Теперь вы находитесь в {0} клановом доме
+hombase.set: 'Дом клана установлен на: {0}'
+hombase.cleared: Дом клана создан
+hombase.mod.set: '{0} база установлена:'
+hombase.not.set: База клана не установлена
+rival.limit.reached: Вы достигли лимита соперничества с кланами
+you.moved.teleport.cancelled: Вы телепортированы
+waiting.for.teleport.stand.still.for.0.seconds: Ждем телепорта, стоим на месте {0} секунд
+no.teleport: Вам не разрешается телепортироваться в это место
+true: включено
+false: выключено
+leave: покинуть
+join: войти
+mute: мут
+player.rank.changed: Ранг установлен
+your.clans.are.already.rivals: Ваши кланы уже соперники
+player.got.money: 'У тебя {0} за убийство {1} основанный на твоем KDR: {2}'
+cleared.bb: Очистил доску объявлений
+clan.balance: 'Клан-Баланс: {0}'
+bb.clan.deposit: '{0} $ были депонированы'
+player.clan.deposit: Вы депонировали {0}
+bb.clan.withdraw: '{0} $ были отозваны'
+player.clan.withdraw: Вы снимаете {0}
+clan.bank.not.enough.money: У вашего банка кланов недостаточно денег
+your.clans.are.not.rivals: Ваши кланы не соперники
+you.cannot.rival.your.own.clan: Вы не можете соперничать с собственным кланом
+the.clan.members.reached.limit: Лимит участников клана достигнут
+you.have.reseted.your.kdr: Вы сбросили свой KDR
+you.have.reseted.0.kdr: Вы сбросили {0} KDR
+you.have.reseted.kdr.of.all.players: Вы обнуляете KDR всех игроков
